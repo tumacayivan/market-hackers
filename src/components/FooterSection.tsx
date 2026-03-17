@@ -74,7 +74,7 @@ const FooterSection = () => {
           className="border-t border-border/30 pt-10 pb-10 flex flex-col items-center text-center"
         >
           <p className="font-mono text-sm tracking-[0.25em] text-muted-foreground/70 uppercase mb-4">Founded by</p>
-          <p className="font-mono text-4xl md:text-6xl lg:text-7xl font-bold text-primary text-glow mb-6 tracking-tight">
+          <p className="font-body text-4xl md:text-6xl lg:text-7xl font-bold text-white uppercase mb-6 tracking-tight">
             Ivan Tumacay
           </p>
           <div className="flex flex-wrap justify-center gap-3 md:gap-4 font-mono text-sm md:text-base">

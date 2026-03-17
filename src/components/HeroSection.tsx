@@ -208,7 +208,7 @@ const HeroSection = () => {
             <p className="text-muted-foreground">Most people try to trade it.</p>
             <p className="text-primary font-bold text-glow text-2xl md:text-3xl">We choose to hack it.</p>
             <p className="mt-8 text-xl md:text-2xl text-muted-foreground/80">
-              — <span className="text-primary font-bold text-2xl md:text-4xl text-glow">Ivan Tumacay</span>
+              — <span className="font-body font-bold text-2xl md:text-4xl text-white uppercase">IVAN TUMACAY</span>
             </p>
             <p className="mt-2 font-mono text-base md:text-lg text-muted-foreground/70">
               Founder · Developer · Researcher · Trader

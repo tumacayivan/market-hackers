@@ -1,3 +1,3 @@
-# Welcome to your Lovable project
+# Market Hackers
 
 TODO: Document your project here
