@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import MissionSection from "@/components/MissionSection";
@@ -18,8 +19,61 @@ import JoinSection from "@/components/JoinSection";
 import FooterSection from "@/components/FooterSection";
 
 const Index = () => {
+  const backgroundAudioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    const audio = backgroundAudioRef.current;
+    if (!audio) return;
+
+    const tryPlay = async () => {
+      try {
+        await audio.play();
+        return !audio.paused;
+      } catch {
+        // Browsers can block autoplay with sound until user interacts.
+        return false;
+      }
+    };
+
+    void tryPlay();
+
+    const cleanupListeners = () => {
+      window.removeEventListener("click", resumePlayback);
+      window.removeEventListener("keydown", resumePlayback);
+      window.removeEventListener("touchstart", resumePlayback);
+      window.removeEventListener("touchmove", resumePlayback);
+      window.removeEventListener("scroll", resumePlayback);
+      window.removeEventListener("wheel", resumePlayback);
+      window.removeEventListener("pointerdown", resumePlayback);
+      document.removeEventListener("visibilitychange", resumePlayback);
+    };
+
+    const resumePlayback = async () => {
+      const didStart = await tryPlay();
+      if (didStart) {
+        cleanupListeners();
+      }
+    };
+
+    window.addEventListener("click", resumePlayback);
+    window.addEventListener("keydown", resumePlayback);
+    window.addEventListener("touchstart", resumePlayback);
+    window.addEventListener("touchmove", resumePlayback, { passive: true });
+    window.addEventListener("scroll", resumePlayback, { passive: true });
+    window.addEventListener("wheel", resumePlayback, { passive: true });
+    window.addEventListener("pointerdown", resumePlayback);
+    document.addEventListener("visibilitychange", resumePlayback);
+
+    return () => {
+      cleanupListeners();
+    };
+  }, []);
+
   return (
     <div className="min-h-screen">
+      <audio ref={backgroundAudioRef} autoPlay loop preload="auto">
+        <source src="/Market Hackers 3.mp3" type="audio/mpeg" />
+      </audio>
       <Navbar />
       <HeroSection />
       <MissionSection />
